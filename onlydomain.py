@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import itertools
+
 dom = []
 price = []
 
@@ -37,10 +39,15 @@ def compile_items(page):
     url = get_page(page)
     get_all_items(url, "tld['product']", "'", ".", dom, 0)
     get_all_items(url, "tld['price']=", "';", "=", price, 2)
-    #for domain, p in (dom, price):
-    #    dic[domain] = p
+    for domain, p in itertools.izip(dom, price):
+        print """
+        Domain: %s
+        Price: %s
+        """ % (domain, p)
 
 
 compile_items('http://www.onlydomains.com/domain-names/domain-pricing')
-print dom
-print price
+#x, y = dom, price
+#print x, y
+#print len(dom)
+#print len(price)
