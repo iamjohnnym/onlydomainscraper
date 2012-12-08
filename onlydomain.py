@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import itertools
+from itertools import izip
 
 dom = []
 price = []
@@ -39,7 +39,7 @@ def compile_items(page):
     url = get_page(page)
     get_all_items(url, "tld['product']", "'", ".", dom, 0)
     get_all_items(url, "tld['price']=", "';", "=", price, 2)
-    for domain, p in itertools.izip(dom, price):
+    for domain, p in izip(dom, price):
         print """
         Domain: %s
         Price: %s
